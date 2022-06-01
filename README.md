@@ -1,21 +1,10 @@
-# CloudRunHackathonElixir
+# Cloud Bowl Sample - Elixir
 
-**TODO: Add description**
+To make changes, edit the `lib/cloud_run_hackathon_elixir/web.ex` file.
 
-## Installation
+Run Locally (Dev):
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `cloud_run_hackathon_elixir` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:cloud_run_hackathon_elixir, "~> 0.1.0"}
-  ]
-end
+```bash
+mix deps.get
+iex -S mix
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/cloud_run_hackathon_elixir>.
-

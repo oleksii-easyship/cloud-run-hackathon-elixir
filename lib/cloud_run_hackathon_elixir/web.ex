@@ -1,14 +1,24 @@
-defmodule WebPlug do
-  import Plug.Conn
+defmodule CloudRunHackathonElixir.Web do
+  use Plug.Router
 
-  def init(options) do
-    # initialize options
-    options
+  plug(:match)
+  plug(:dispatch)
+
+  get "/" do
+    IO.puts("#{conn.method} - 200 \n")
+    send_resp(conn, 200, "Let the game begin!")
   end
 
-  def call(conn, _opts) do
-    conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(200, "Hello world")
+  post "/" do
+    # Prints JSON POST body
+    {:ok, body, conn} = Plug.Conn.read_body(conn)
+    IO.puts("#{conn.method} - 200 \n #{body}")
+
+    moves = ['F', 'T', 'R', 'L']
+    send_resp(conn, 200, Enum.random(moves))
+  end
+
+  match _ do
+    send_resp(conn, 404, "Oops!")
   end
 end

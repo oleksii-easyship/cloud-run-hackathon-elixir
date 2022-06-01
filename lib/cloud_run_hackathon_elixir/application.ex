@@ -10,12 +10,14 @@ defmodule CloudRunHackathonElixir.Application do
     children = [
       # Starts a worker by calling: CloudRunHackathonElixir.Worker.start_link(arg)
       # {CloudRunHackathonElixir.Worker, arg}
-      {Plug.Cowboy, scheme: :http, plug: WebPlug, options: [port: 8080]}
+      {Plug.Cowboy, scheme: :http, plug: CloudRunHackathonElixir.Web, options: [port: 8080]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: CloudRunHackathonElixir.Supervisor]
+
+    IO.puts("Starting application...")
     Supervisor.start_link(children, opts)
   end
 end
