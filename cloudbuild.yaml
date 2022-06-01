@@ -1,15 +1,16 @@
 steps:
-  - name: 'gcr.io/k8s-skaffold/pack'
-    entrypoint: 'pack'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
-      [
-        'build',
-        '--builder=heroku/buildpacks',
-        '--path=test_app',
-        '--publish',
-        'gcr.io/$PROJECT_ID/cloudbowl-samples-elixir:$COMMIT_SHA',
-      ]
-
+      - 'build'
+      - '.'
+      - '-f'
+      - 'Dockerfile'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/cloudbowl-samples-elixir:$COMMIT_SHA'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/cloudbowl-samples-elixir:$COMMIT_SHA'
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       [
