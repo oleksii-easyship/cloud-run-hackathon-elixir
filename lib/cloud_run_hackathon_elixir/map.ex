@@ -1,6 +1,6 @@
 defmodule CloudRunHackathonElixir.Map do
   def parse_body(body_str) do
-    # json_body = Jason.decode!(body_str)
+    json_body = Jason.decode!(body_str)
 
     %{
       "_links" => %{
@@ -12,7 +12,7 @@ defmodule CloudRunHackathonElixir.Map do
         "dims" => [arena_width, arena_height],
         "state" => arena_state
       }
-    } = body_str
+    } = json_body
 
     {{arena_width, arena_height}, arena_state, app_url}
   end
