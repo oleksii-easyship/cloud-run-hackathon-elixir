@@ -4,6 +4,8 @@ defmodule CloudRunHackathonElixir.Web do
   plug(:match)
   plug(:dispatch)
 
+  alias CloudRunHackathonElixir.Map
+
   get "/" do
     IO.puts("#{conn.method} - 200 \n")
     send_resp(conn, 200, "Let the game begin!")
@@ -14,21 +16,18 @@ defmodule CloudRunHackathonElixir.Web do
     {:ok, body, conn} = Plug.Conn.read_body(conn)
     IO.puts("#{conn.method} - 200 \n #{body}")
 
-    action_disp = :rand.uniform(50)
+    try do
+      res =
+        Map.parse_body(body)
+        |> Map.next_move()
 
-    res =
-      cond do
-        action_disp <= 10 ->
-          "T"
-
-        action_disp > 40 ->
-          Enum.random(["R", "L"])
-
-        true ->
-          "F"
-      end
-
-    send_resp(conn, 200, res)
+      send_resp(conn, 200, res)
+    rescue
+      e ->
+        IO.puts("ERROR")
+        IO.inspect(e)
+        send_resp(conn, 200, Enum.random(["T", "L", "R", "F"]))
+    end
   end
 
   match _ do
