@@ -14,8 +14,21 @@ defmodule CloudRunHackathonElixir.Web do
     {:ok, body, conn} = Plug.Conn.read_body(conn)
     IO.puts("#{conn.method} - 200 \n #{body}")
 
-    moves = ['F', 'T', 'R', 'L']
-    send_resp(conn, 200, Enum.random(moves))
+    action_disp = :rand.uniform(50)
+
+    res =
+      cond do
+        action_disp <= 10 ->
+          "T"
+
+        action_disp > 40 ->
+          Enum.random(["R", "L"])
+
+        true ->
+          "F"
+      end
+
+    send_resp(conn, 200, res)
   end
 
   match _ do
