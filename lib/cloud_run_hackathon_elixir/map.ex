@@ -45,7 +45,7 @@ defmodule CloudRunHackathonElixir.Map do
 
     others =
       state
-      |> Enum.reduce([], fn {_url, %{"x" => other_x, "y" => other_y}} -> {other_x, other_y} end)
+      |> Enum.reduce([], fn {_url, %{"x" => other_x, "y" => other_y}}, list -> [{other_x, other_y} | list] end)
 
     IO.puts "TARGETS"
     IO.inspect others
