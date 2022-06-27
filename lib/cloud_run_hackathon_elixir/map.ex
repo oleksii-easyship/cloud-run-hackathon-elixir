@@ -47,6 +47,9 @@ defmodule CloudRunHackathonElixir.Map do
       state
       |> Enum.reduce([], fn {_url, %{"x" => other_x, "y" => other_y}} -> {other_x, other_y} end)
 
+    IO.puts "TARGETS"
+    IO.inspect others
+
     MapSet.intersection(MapSet.new(hit_line_res), MapSet.new(others)) != MapSet.new([])
   end
 
