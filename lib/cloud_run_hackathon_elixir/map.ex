@@ -49,6 +49,8 @@ defmodule CloudRunHackathonElixir.Map do
 
     IO.puts "TARGETS"
     IO.inspect others
+    IO.puts "hit_line"
+    IO.inspect hit_line_res
 
     MapSet.intersection(MapSet.new(hit_line_res), MapSet.new(others)) != MapSet.new([])
   end
