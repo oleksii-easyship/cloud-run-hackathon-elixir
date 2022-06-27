@@ -21,7 +21,8 @@ defmodule CloudRunHackathonElixir.Web do
         Map.parse_body(body)
         |> Map.next_move()
 
-      send_resp(conn, 200, res)
+        #TEMP
+      send_resp(conn, 200, Enum.random(["T", "L", "R", "F"]))
     rescue
       e ->
         IO.puts("ERROR")
