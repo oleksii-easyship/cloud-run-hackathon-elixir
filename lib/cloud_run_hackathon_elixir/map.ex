@@ -19,9 +19,11 @@ defmodule CloudRunHackathonElixir.Map do
 
   def next_move({dims, state, me} = _arena_struct) do
     if can_hit(dims, state, me) do
+      IO.puts "Can hit"
       "T"
     else
       action_disp = :rand.uniform(50)
+      IO.puts("RAND: #{action_disp}")
 
       if action_disp <= 35 do
         "F"
