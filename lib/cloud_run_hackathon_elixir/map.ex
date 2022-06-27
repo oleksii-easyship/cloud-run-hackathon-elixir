@@ -56,7 +56,7 @@ defmodule CloudRunHackathonElixir.Map do
       {x - 2, y},
       {x - 3, y}
     ]
-    |> Enum.select(fn {x, y} -> x >= 0 end)
+    |> Enum.filter(fn {x, y} -> x >= 0 end)
   end
 
   defp hit_line({w, _h} = _bounds, x, y, "E") do
@@ -65,7 +65,7 @@ defmodule CloudRunHackathonElixir.Map do
       {x, y + 2},
       {x, y + 3}
     ]
-    |> Enum.select(fn {x, y} -> y <= w end)
+    |> Enum.filter(fn {x, y} -> y <= w end)
   end
 
   defp hit_line({_w, h} = _bounds, x, y, "S") do
@@ -74,7 +74,7 @@ defmodule CloudRunHackathonElixir.Map do
       {x + 2, y},
       {x + 3, y}
     ]
-    |> Enum.select(fn {x, y} -> x <= h end)
+    |> Enum.filter(fn {x, y} -> x <= h end)
   end
 
   defp hit_line(_bounds, x, y, "W") do
@@ -83,6 +83,6 @@ defmodule CloudRunHackathonElixir.Map do
       {x, y - 2},
       {x, y - 3}
     ]
-    |> Enum.select(fn {x, y} -> y >= 0 end)
+    |> Enum.filter(fn {x, y} -> y >= 0 end)
   end
 end
